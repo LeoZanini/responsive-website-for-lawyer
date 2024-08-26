@@ -1,113 +1,218 @@
-import Image from "next/image";
+'use client';
+import { HeaderComponent } from '@/components/header';
+import { LawIcon } from '@/components/icons/law-icon';
+import { cards } from '@/components/ui/cards';
+import { LayoutGrid } from '@/components/ui/layout-grid';
+import Head from 'next/head';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+function FadeInSection({ children }) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: '-50px 0px'
+  });
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-opacity duration-1000 ${inView ? 'opacity-100' : 'opacity-0'} ${
+        inView ? 'translate-x-0' : 'translate-x-10'
+      }`}>
+      {children}
+    </div>
+  );
+}
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+  const [activeTab, setActiveTab] = useState('home');
+  const [isScrolledPastGrid, setIsScrolledPastGrid] = useState(false);
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
+  useEffect(() => {
+    const handleScroll = () => {
+      const gridElement = document.getElementById('main-image');
+      if (gridElement) {
+        const gridBottom = gridElement.getBoundingClientRect().bottom;
+        if (gridBottom < 0) {
+          setIsScrolledPastGrid(true);
+        } else {
+          setIsScrolledPastGrid(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleNavClick = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setActiveTab(sectionId);
+    }
+  };
+
+  const services = [
+    {
+      title: 'Direito do Trabalho',
+      description:
+        'Assessoria especializada em questões trabalhistas, defendendo os direitos dos trabalhadores e orientando empregadores.',
+      image: '/direito-trabalho.jpg'
+    },
+    {
+      title: 'Direito Previdenciário',
+      description:
+        'Orientação e representação em questões relacionadas à Previdência Social, incluindo aposentadorias, pensões e benefícios.',
+      image: '/direito-previdenciario.jpg'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-primary-background text-primary-text overflow-x-hidden">
+      <Head>
+        <title>Maria Eduarda Risso</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <HeaderComponent
+        isScrolledPastGrid={isScrolledPastGrid}
+        activeTab={activeTab}
+        handleNavClick={handleNavClick}
+      />
+      <div id="home" className="relative overflow-hidden w-screen h-screen">
+        <div className="absolute inset-0 bg-black opacity-60 backdrop-blur-sm"></div>
         <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+          id="main-image"
+          alt="home page image"
+          src="/imagem-exemplo5.jpg"
+          width={1720}
+          height={200}
+          className="object-cover w-full h-full z-0"
         />
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <main className="container mx-auto px-4 py-40">
+        <FadeInSection>
+          <section className="mb-20">
+            <h2 className="text-3xl font-cmtiempo font-bold mb-8 text-accent text-end">
+              Bem-vindo ao nosso Escritório
+            </h2>
+            <p className="text-primary-text leading-relaxed font-din-next text-end">
+              Oferecemos serviços jurídicos de alta qualidade, focados em Direito do Trabalho e
+              Direito Previdenciário. Nossa missão é garantir que seus direitos sejam protegidos e
+              que você receba a orientação jurídica necessária.
+            </p>
+          </section>
+        </FadeInSection>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <FadeInSection>
+          <section id="services" className="mb-20">
+            <h2 className="text-3xl font-cmtiempo font-bold mb-8 text-accent text-center">
+              Nossos Serviços
+            </h2>
+            <div className="space-y-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg shadow-lg p-6 flex items-center transition-transform duration-300 hover:scale-102">
+                  <div className="flex-shrink-0 mr-6">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={200}
+                      height={200}
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-cmtiempo font-semibold text-accent">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-secondary-text font-din-next">{service.description}</p>
+                    <button className="mt-4 bg-accent hover:bg-opacity-80 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 font-din-next">
+                      Saiba Mais
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </FadeInSection>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+        <FadeInSection>
+          <section id="about" className="mb-20">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-3xl font-cmtiempo font-bold mb-6 text-accent">Sobre Nós</h2>
+              <p className="text-secondary-text leading-relaxed font-din-next">
+                O Escritório de Advocacia Jane Smith tem se dedicado a fornecer serviços jurídicos
+                especializados por mais de 20 anos. Nossa equipe de advogados experientes está
+                comprometida em ajudar nossos clientes a navegar por questões jurídicas complexas
+                com confiança e elegância. Nos orgulhamos de nossa atenção aos detalhes, abordagem
+                personalizada e compromisso em alcançar os melhores resultados possíveis para nossos
+                clientes.
+              </p>
+            </div>
+          </section>
+        </FadeInSection>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <FadeInSection>
+          <section id="contact" className="mb-20">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-3xl font-cmtiempo font-bold mb-6 text-accent">
+                Entre em Contato
+              </h2>
+              <p className="text-secondary-text mb-4 font-din-next">
+                Ficaremos felizes em atendê-lo. Entre em contato para uma consulta:
+              </p>
+              <div className="space-y-2 text-primary-text font-din-next">
+                <p>Telefone: (11) 5555-1234</p>
+                <p>Email: contato@janesmith.adv.br</p>
+                <p>Endereço: Av. Paulista, 1000, São Paulo - SP, 01310-100</p>
+              </div>
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section id="profile" className="mb-20">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-3xl font-cmtiempo font-bold mb-6 text-accent">
+                Perfil da Advogada
+              </h2>
+              <div className="flex items-center">
+                <Image
+                  src="/jane-smith.jpg"
+                  alt="Jane Smith"
+                  width={200}
+                  height={200}
+                  className="rounded-full mr-8"
+                />
+                <div>
+                  <h3 className="text-2xl font-cmtiempo font-semibold text-accent mb-4">
+                    Dra. Jane Smith
+                  </h3>
+                  <p className="text-secondary-text leading-relaxed font-din-next">
+                    A Dra. Jane Smith é especialista em Direito do Trabalho e Direito
+                    Previdenciário, com mais de 20 anos de experiência. Formada pela Universidade de
+                    São Paulo, possui mestrado em Direito do Trabalho e é membro ativo da OAB-SP.
+                    Sua paixão é defender os direitos dos trabalhadores e garantir que seus clientes
+                    recebam o devido suporte em questões previdenciárias. Ao longo de sua carreira,
+                    a Dra. Jane já atendeu mais de 1000 casos com sucesso, sempre priorizando a
+                    ética e a excelência em seu trabalho.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </FadeInSection>
+      </main>
+
+      <footer className="bg-accent text-white py-6">
+        <div className="container mx-auto px-4 text-center font-din-next">
+          <p>&copy; 2024 Escritório de Advocacia Jane Smith. Todos os direitos reservados.</p>
+        </div>
+      </footer>
+    </div>
   );
 }
