@@ -10,19 +10,19 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          background: '#0A1F44',
+          background: '#000000',
           text: 'rgb(255, 255, 255)'
         },
         secondary: {
           background: '#4A657A',
           text: 'rgb(80, 85, 75)'
         },
-        accent: '#DAA520',
+        accent: '#873D00',
         line: 'rgb(244, 243, 239)'
       },
       fontFamily: {
-        cmtiempo: ['cmtiempo', 'serif'],
-        'din-next': ['din-next-w01-light', 'din-next-w02-light', 'din-next-w10-light', 'sans-serif']
+        static: ['var(--font-lancelot)'],
+        mono: ['var(--font-lateef-regular)']
       }
     }
   },

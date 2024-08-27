@@ -1,61 +1,40 @@
+import { lancelot, lateef } from '@/app/layout';
 import { LawIcon } from './icons/law-icon';
-
-const getHeaderClassNames = (isScrolledPastGrid: boolean) => {
-  return `py-6 fixed w-full z-10 transition-colors duration-500 ${
-    isScrolledPastGrid
-      ? 'bg-[rgba(218,165,32,0.9)] border-b border-white shadow-lg'
-      : 'border-b border-accent bg-[rgba(0,0,0,0.4)] shadow-lg'
-  }`;
-};
-
-const getLawIconClassNames = (isScrolledPastGrid: boolean) => {
-  return `w-14 h-14 pr-1 mr-4 border-r stroke-0 ${
-    isScrolledPastGrid ? 'border-r-black' : 'stroke-accent fill-accent border-r-accent'
-  }`;
-};
-
-const getButtonClassNames = (isScrolledPastGrid: boolean, activeTab: string, tab: string) => {
-  return `transition ease-in-out duration-1000 font-cmtiempo ${
-    activeTab === tab ? 'font-semibold border-b-2' : ''
-  } ${
-    isScrolledPastGrid
-      ? activeTab === tab
-        ? 'border-black '
-        : ''
-      : activeTab === tab
-      ? 'border-accent '
-      : ''
-  } ${isScrolledPastGrid ? 'text-black hover:text-white' : 'text-white hover:text-accent'}`;
-};
 
 export const HeaderComponent = (props) => {
   const { isScrolledPastGrid, activeTab, handleNavClick } = props;
 
+  const getHeaderClassNames = (isScrolledPastGrid: boolean) => {
+    return `py-4 fixed w-full z-10 transition-colors duration-700 ${
+      isScrolledPastGrid ? 'border-b border-accent bg-black shadow-lg' : ' bg-transparent shadow-lg'
+    }`;
+  };
+
+  const getButtonClassNames = (isScrolledPastGrid: boolean, activeTab: string, tab: string) => {
+    return `transition ease-in-out duration-1000 hover:text-accent ${
+      activeTab === tab ? 'font-semibold border-b-2 border-b-accent' : ''
+    }  `;
+  };
+
   return (
     <>
       <header className={getHeaderClassNames(isScrolledPastGrid)}>
-        <div className="flex container mx-auto px-6">
-          <div className="flex justify-center align-middle">
-            <LawIcon className={getLawIconClassNames(isScrolledPastGrid)} />
-          </div>
-          <div className="w-1/4">
-            <h1
-              className={`text-2xl font-light font-cmtiempo ${
-                isScrolledPastGrid ? 'text-white' : 'text-[rgba(253,189,70,0.95)]'
-              }`}>
+        <div className="flex w-full ">
+          <div className="w-1/4 flex flex-col place-items-end">
+            <h2 className={`text-[18px] h-1 text-gray-200 ${lancelot.className} `}>
+              Direto Trabalhista e Previdenciário
+            </h2>
+            <h1 className={`text-[40px] h-0 text-accent ${lateef.className}`}>
               Maria Eduarda Risso
             </h1>
-            <h2
-              className={`text-xl font-light font-cmtiempo ${
-                isScrolledPastGrid ? 'text-primary-background' : 'text-white'
-              }`}>
-              Direto trabalhista e previdenciario
-            </h2>
           </div>
-          <nav className="flex w-full z-10 place-items-end">
-            <div className="container mx-auto px-4">
-              <ul className="flex justify-end place-items-end space-x-8">
-                {['home', 'services', 'about', 'contact'].map((tab) => (
+          <div className="flex justify-center align-middle border-l border-l-accent">
+            <LawIcon className={'w-10 h-12'} />
+          </div>
+          <nav className="flex w-1/2 z-10 place-items-end text-xl justify-center">
+            <div className="flex ">
+              <ul className={`flex place-items-end space-x-20 ${lateef.className}`}>
+                {['ínicio', 'serviços', 'sobre', 'contato'].map((tab) => (
                   <li key={tab}>
                     <button
                       onClick={() => handleNavClick(tab)}
