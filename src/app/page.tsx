@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { lancelot, lateef } from './layout';
 
-function FadeInSection({ children }) {
+function FadeInSection({ children }: { children: React.ReactNode }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-50px 0px'
@@ -45,7 +45,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (sectionId) => {
+  const handleNavClick = (sectionId: string) => {
     console.log(`Navigating to section: ${sectionId}`); // Adicione esta linha para depuração
     const section = document.getElementById(sectionId);
     if (section) {
@@ -56,16 +56,56 @@ export default function Home() {
 
   const services = [
     {
-      title: 'Direito do Trabalho',
-      description:
-        'Assessoria especializada em questões trabalhistas, defendendo os direitos dos trabalhadores e orientando empregadores.',
-      image: '/imagem-exemplo6.jpg'
+      title: 'Direito Previdenciário',
+      description: (
+        <ul className="list-disc list-inside w-[80%]">
+          <li>Aposentadorias;</li>
+          <li>Benefício por incapacidade permanente (antiga aposentadoria por invalidez);</li>
+          <li>Benefício por incapacidade temporária (antigo auxílio-doença);</li>
+          <li>Auxílio-Acidente;</li>
+          <li>Pensão por Morte;</li>
+          <li>Salário-Maternidade;</li>
+          <li>Entre outros serviços.</li>
+        </ul>
+      ),
+      image: '/imagem-exemplo.jpg',
+      className: 'bg-firstCard-background w-1/3 p-8',
+      titleClassName: 'text-white w-[60%]',
+      descriptionClassName: ''
     },
     {
-      title: 'Direito Previdenciário',
-      description:
-        'Orientação e representação em questões relacionadas à Previdência Social, incluindo aposentadorias, pensões e benefícios.',
-      image: '/imagem-exemplo.jpg'
+      title: 'Direito do Trabalho',
+      description: (
+        <ul className="list-disc ml-5">
+          <li>Reconhecimento de Vínculo Empregatício;</li>
+          <li>Reversão da Justa Causa;</li>
+          <li>Horas Extras;</li>
+          <li>Acidente de Trabalho</li>
+          <li>Adicional de Insalubridade e Periculosidade;</li>
+          <li>Diferenças Salariais;</li>
+          <li>Rescisão Indireta;</li>
+          <li>Estabilidades;</li>
+          <li>Entre outros serviços.</li>
+        </ul>
+      ),
+      image: '/imagem-exemplo6.jpg',
+      className: 'bg-white w-1/3 p-8',
+      titleClassName: 'text-black w-[60%]',
+      descriptionClassName: 'text-black'
+    },
+    {
+      title: 'Outras Áreas',
+      description: (
+        <ul className="list-disc ml-5">
+          <li>Cível;</li>
+          <li>Consumidor;</li>
+          <li>Família.</li>
+        </ul>
+      ),
+      image: '/imagem-maria-2.png',
+      className: 'bg-accent text-white w-1/3',
+      titleClassName: 'text-black pt-10',
+      descriptionClassName: 'text-black'
     }
   ];
 
@@ -91,15 +131,15 @@ export default function Home() {
         />
       </div>
 
-      <main className="mx-auto px-4">
+      <main className="px-4">
         <FadeInSection>
           <section
             className="flex place-content-end justify-end h-screen w-full px-20 py-80"
             id="ínicio">
-            <h2 className="text-6xl text-end font-bold mb-8 text-accent pr-24 w-[60%] p-4 leading-none">
+            <h2 className="text-6xl text-end font-bold mb-8 text-accent pr-24 w-[70%] p-4 leading-none">
               Um Serviço Jurídico de
               <FlipWords className="text-end " words={words} />
-              <h3 className="mr-8 text-end"></h3>
+              <div className="mr-8 text-end"></div>
             </h2>
           </section>
         </FadeInSection>
@@ -117,28 +157,32 @@ export default function Home() {
         </FadeInSection>
 
         <FadeInSection>
-          <section id="serviços" className="mt-60 mb-60 w-full flex flex-col">
-            <h2 className="text-5xl font-bold mb-8 text-accent text-end mr-20">Nossos Serviços</h2>
-            <div className="space-y-8 flex flex-col place-items-end ">
+          <section id="serviços" className="my-32 w-full flex flex-col">
+            <h2 className=" text-5xl font-bold mb-8 text-accent text-center mt-28">
+              Áreas de atuação
+            </h2>
+            <div className="flex">
               {services.map((service, index) => (
                 <div
-                  key={index}
-                  className="bg-[rgba(255,255,255,0.9)] shadow-xl border border-accent p-6 flex items-start">
-                  <div className="mr-6">
+                  className={`flex place-items-center flex-col ${service.className}`}
+                  key={index}>
+                  {service === services[2] && (
                     <Image
                       src={service.image}
                       alt={service.title}
-                      width={200}
+                      width={1000}
                       height={200}
-                      className=""
+                      className="object-cover h-[50%] opacity-80 border-b "
                     />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-accent text-start">{service.title}</h3>
-                    <p className="mt-3 text-secondary-text">{service.description}</p>
-                    <button className="mt-4 bg-accent hover:bg-opacity-80 text-white font-semibold py-2 px-4 transition-colors duration-300 font-din-next">
-                      Saiba Mais
-                    </button>
+                  )}
+                  <div className={`flex flex-col h-[140px]`}>
+                    <h3
+                      className={`text-3xl text-start ml-8 mb-2 font-bold ${service.titleClassName}`}>
+                      {service.title}
+                    </h3>
+                    <div className={`m-2 ml-12 h-full ${service.descriptionClassName}`}>
+                      {service.description}
+                    </div>
                   </div>
                 </div>
               ))}

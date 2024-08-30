@@ -9,6 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        firstCard: {
+          background: '#780e35'
+        },
         primary: {
           background: '#000000',
           text: 'rgb(255, 255, 255)'
@@ -17,7 +20,7 @@ const config: Config = {
           background: '#4A657A',
           text: 'rgb(80, 85, 75)'
         },
-        accent: '#873D00',
+        accent: '#ab9c65',
         line: 'rgb(244, 243, 239)'
       },
       fontFamily: {
