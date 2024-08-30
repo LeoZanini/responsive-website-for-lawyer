@@ -1,31 +1,12 @@
 'use client';
 import { HeaderComponent } from '@/components/header';
-import { LawIcon } from '@/components/icons/law-icon';
-import { cards } from '@/components/ui/cards';
 import { FlipWords } from '@/components/ui/flip-words';
-import { LayoutGrid } from '@/components/ui/layout-grid';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { lancelot, lateef } from './layout';
-
-function FadeInSection({ children }: { children: React.ReactNode }) {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    rootMargin: '-50px 0px'
-  });
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-opacity duration-1000 ${inView ? 'opacity-100' : 'opacity-0'} ${
-        inView ? 'translate-x-0' : 'translate-x-10'
-      }`}>
-      {children}
-    </div>
-  );
-}
+import { WhatsAppIcon } from '@/components/icons/whatsapp-icon';
+import { MariaLogo } from '@/components/icons/maria-logo';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('ínicio');
@@ -34,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const gridElement = document.getElementById('ínicio');
+      const gridElement = document.getElementById('serviços');
       if (gridElement) {
         const gridBottom = gridElement.getBoundingClientRect().bottom;
         gridBottom < 0 ? setIsScrolledPastGrid(true) : setIsScrolledPastGrid(false);
@@ -46,7 +27,6 @@ export default function Home() {
   }, []);
 
   const handleNavClick = (sectionId: string) => {
-    console.log(`Navigating to section: ${sectionId}`); // Adicione esta linha para depuração
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
@@ -70,7 +50,7 @@ export default function Home() {
       ),
       image: '/imagem-exemplo.jpg',
       className: 'bg-firstCard-background w-1/3 p-8',
-      titleClassName: 'text-white w-[60%]',
+      titleClassName: 'text-white w-[50%]',
       descriptionClassName: ''
     },
     {
@@ -110,7 +90,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-primary-background text-primary-text overflow-x-hidden font-static">
+    <div className="flex flex-col bg-primary-background text-primary-text overflow-x-hidden font-static">
       <Head>
         <title>Maria Eduarda Risso</title>
         <link rel="icon" href="/favicon.ico" />
@@ -120,51 +100,38 @@ export default function Home() {
         activeTab={activeTab}
         handleNavClick={handleNavClick}
       />
-      <div className="absolute w-full">
+      <div className="absolute w-full h-screen" id="ínicio">
         <Image
           id="main-image"
           alt="home page image"
-          src="/imagem-exemplo4.jpg"
-          width={1720}
-          height={200}
-          className="object-cover object-left-top z-0"
+          src="/imagem-maria-up.png"
+          width={2048}
+          height={1144}
+          className="object-fill opacity-80"
         />
       </div>
-
-      <main className="px-4">
-        <FadeInSection>
-          <section
-            className="flex place-content-end justify-end h-screen w-full px-20 py-80"
-            id="ínicio">
-            <h2 className="text-6xl text-end font-bold mb-8 text-accent pr-24 w-[70%] p-4 leading-none">
-              Um Serviço Jurídico de
-              <FlipWords className="text-end " words={words} />
-              <div className="mr-8 text-end"></div>
-            </h2>
+      <main className="relative py-12">
+        <>
+          <section className="flex w-screen py-40 h-screen">
+            <div className="flex flex-col text-accent ml-28 leading-none w-1/3 p-6 place-items-center">
+              <MariaLogo className={'flex stroke-accent h-1/2'} width="" height="60" />
+              <div className="text-5xl "> Maria Eduarda Risso</div>
+              <div className="text-2xl text-gray-300">Advogada</div>
+            </div>
+            <div className="flex w-1/2 justify-center place-items-center 2xl:ml-28 xl:ml-20">
+              <button className="bg-accent w-48 h-10 hover:bg-opacity-75 transition duration-700 ease-in-out">
+                ATUAÇÃO
+              </button>
+            </div>
           </section>
-        </FadeInSection>
-        <FadeInSection>
-          <section className="flex flex-col place-content-end justify-end h-screen w-1/2">
-            <h2 className="text-5xl font-bold mb-8 text-accent text-end bg-[rgba(0,0,0,0.2)] px-4 pt-4">
-              Bem-vindo ao nosso Escritório
-            </h2>
-            <p className="text-primary-text leading-8 text-end mt-2">
-              Oferecemos serviços jurídicos de alta qualidade, focados em Direito do Trabalho e
-              Direito Previdenciário. Nossa missão é garantir que seus direitos sejam protegidos e
-              que você receba a orientação jurídica necessária.
-            </p>
-          </section>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section id="serviços" className="my-32 w-full flex flex-col">
-            <h2 className=" text-5xl font-bold mb-8 text-accent text-center mt-28">
-              Áreas de atuação
-            </h2>
-            <div className="flex">
+        </>
+        <>
+          <section id="serviços" className="w-full flex flex-col h-screen pt-24 bg-[#e3dfd6]">
+            <h2 className=" text-5xl font-bold mb-8 text-accent text-center">Áreas de atuação</h2>
+            <div className="flex mx-4">
               {services.map((service, index) => (
                 <div
-                  className={`flex place-items-center flex-col ${service.className}`}
+                  className={`flex place-items-center flex-col mx-4 shadow-lg border border-accent hover:scale-[102%] transition-scale duration-1000 ${service.className}`}
                   key={index}>
                   {service === services[2] && (
                     <Image
@@ -172,10 +139,10 @@ export default function Home() {
                       alt={service.title}
                       width={1000}
                       height={200}
-                      className="object-cover h-[50%] opacity-80 border-b "
+                      className="object-cover h-[50%] opacity-80"
                     />
                   )}
-                  <div className={`flex flex-col h-[140px]`}>
+                  <div className={`flex flex-col h-[160px]`}>
                     <h3
                       className={`text-3xl text-start ml-8 mb-2 font-bold ${service.titleClassName}`}>
                       {service.title}
@@ -188,43 +155,10 @@ export default function Home() {
               ))}
             </div>
           </section>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section id="sobre" className="mb-60">
-            <div className="bg-[rgba(255,255,255,0.9)] shadow-xl border border-accent p-8">
-              <h2 className="text-3xl font-bold mb-6 text-accent">Sobre Nós</h2>
-              <p className="text-secondary-text leading-relaxed font-din-next">
-                O Escritório de Advocacia Jane Smith tem se dedicado a fornecer serviços jurídicos
-                especializados por mais de 20 anos. Nossa equipe de advogados experientes está
-                comprometida em ajudar nossos clientes a navegar por questões jurídicas complexas
-                com confiança e elegância. Nos orgulhamos de nossa atenção aos detalhes, abordagem
-                personalizada e compromisso em alcançar os melhores resultados possíveis para nossos
-                clientes.
-              </p>
-            </div>
-          </section>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section id="contato" className="mb-60">
-            <div className="bg-[rgba(255,255,255,0.9)] shadow-xl border border-accent p-8">
-              <h2 className="text-3xl font-bold mb-6 text-accent">Entre em Contato</h2>
-              <p className="text-secondary-text mb-4 font-din-next">
-                Ficaremos felizes em atendê-lo. Entre em contato para uma consulta:
-              </p>
-              <div className="space-y-2 text-black">
-                <p>Telefone: (11) 5555-1234</p>
-                <p>Email: contato@janesmith.adv.br</p>
-                <p>Endereço: Av. Paulista, 1000, São Paulo - SP, 01310-100</p>
-              </div>
-            </div>
-          </section>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section id="profile" className="mb-60">
-            <div className="bg-[rgba(255,255,255,0.9)] shadow-xl border border-accent p-8">
+        </>
+        <>
+          <section id="contato" className="h-screen pt-32">
+            <div className="bg-[#323232] shadow-xl border border-accent p-8">
               <div className="flex items-center">
                 <Image
                   src="/maria.jpeg"
@@ -234,10 +168,9 @@ export default function Home() {
                   className="rounded-full mr-8"
                 />
                 <div>
-                  <h2 className={`text-5xl font-bold mb-6 text-accent ${lateef.className}`}>
-                    Maria Eduarda Risso
-                  </h2>
-                  <p className="text-secondary-text leading-relaxed font-din-next">
+                  <h2 className={`text-5xl font-bold mb-6 text-accent`}>Maria Eduarda Risso</h2>
+                  <WhatsAppIcon className="w-10 h-10 stroke-accent fill-accent" />
+                  <p className="leading-relaxed font-din-next text-accent">
                     A Dra. Jane Smith é especialista em Direito do Trabalho e Direito
                     Previdenciário, com mais de 20 anos de experiência. Formada pela Universidade de
                     São Paulo, possui mestrado em Direito do Trabalho e é membro ativo da OAB-SP.
@@ -250,14 +183,11 @@ export default function Home() {
               </div>
             </div>
           </section>
-        </FadeInSection>
+        </>
       </main>
-
-      <footer className="bg-[rgb(49,21,8)] text-gray-300 py-4">
-        <div className="container mx-auto px-4 text-center font-din-next">
-          <p>
-            &copy; 2024 Escritório de Advocacia Maria Eduarda Risso. Todos os direitos reservados.
-          </p>
+      <footer className="bg-black bg-opacity-50 text-accent py-2">
+        <div className="w-full text-center">
+          <p>&copy; 2024 Maria Eduarda Risso. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>

@@ -3,7 +3,7 @@ export const MariaLogo = (props) => {
   return (
     <svg
       version="1.1"
-      viewBox="0 0 1240 1140"
+      viewBox="0 0 1240 940"
       width={width}
       height={height}
       xmlns="http://www.w3.org/2000/svg"

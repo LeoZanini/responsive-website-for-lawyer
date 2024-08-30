@@ -1,3 +1,4 @@
+import { lancelot, robotoCondesedRegular } from '@/app/layout';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -13,7 +14,7 @@ const config: Config = {
           background: '#780e35'
         },
         primary: {
-          background: '#000000',
+          background: '#323232',
           text: 'rgb(255, 255, 255)'
         },
         secondary: {
@@ -21,11 +22,12 @@ const config: Config = {
           text: 'rgb(80, 85, 75)'
         },
         accent: '#ab9c65',
+        accentComplement: '#a89a6680',
         line: 'rgb(244, 243, 239)'
       },
       fontFamily: {
-        static: ['var(--font-lancelot)'],
-        mono: ['var(--font-lateef-regular)']
+        lancelot: ['Lancelot'],
+        robotoCondesedRegular: ['RobotoCondensed-Regular']
       }
     }
   },

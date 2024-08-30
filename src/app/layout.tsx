@@ -24,16 +24,23 @@ export const lancelot = localFont({
   variable: '--font-lancelot'
 });
 
+export const robotoCondesedRegular = localFont({
+  src: './fonts/RobotoCondensed-Regular.ttf',
+  weight: '400',
+  display: 'auto',
+  variable: '--font-roboto-condensed-regular'
+});
+
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={``}>
-      <body className={`${inter.className}${lateef.className}${lancelot.className}`}>
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${inter.className}${lateef.className}${lancelot.className}${robotoCondesedRegular.className}`}>
+      <body className={``}>{children}</body>
     </html>
   );
 }

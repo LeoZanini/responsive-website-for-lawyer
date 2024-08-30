@@ -56,7 +56,7 @@ export const FlipWords = ({
           scale: 2,
           position: 'absolute'
         }}
-        className={cn('z-10 text-[#7a6929]', className)}
+        className={cn('z-10 text-accentComplement', className)}
         key={currentWord}>
         {/* edit suggested by Sajal: https://x.com/DewanganSajal */}
         {currentWord.split(' ').map((word, wordIndex) => (
