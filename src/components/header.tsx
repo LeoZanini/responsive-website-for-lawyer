@@ -23,14 +23,23 @@ export const HeaderComponent = ({
   return (
     <>
       <header
-        className={`p-4 fixed w-full z-10 transition-colors duration-700 h-[72px] ${
+        className={`fixed w-full z-10 transition-colors duration-700 h-16 ${
           isScrolledPastGrid
-            ? 'border-b border-primary border-b-accent bg-[rgba(0,0,0,0.9)] shadow-lg '
+            ? 'border-b-2 border-primary border-b-accent bg-[rgba(0,0,0,0.9)] shadow-lg '
             : ' bg-transparent'
         }`}>
         <div className="flex w-full h-full">
           <div className="flex pl-10">
-            <MariaLogo className={'stroke-accent'} width="80" height="60" />
+            <button
+              onClick={() => handleNavClick('ínicio')}
+              className="group hover:scale-95 transition duration-1000 ease-in-out">
+              <MariaLogo
+                className={`stroke-accent fill-accent mt-2 transition-colors duration-1000 ease-in-out`}
+                width="80"
+                height="50"
+                barDistance="760"
+              />
+            </button>
           </div>
           <div className="flex flex-col justify-center"></div>
           {/* <nav className="flex w-1/2 z-10 place-items-end text-xl justify-center text-accent">

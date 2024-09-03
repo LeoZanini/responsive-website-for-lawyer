@@ -7,15 +7,19 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { WhatsAppIcon } from '@/components/icons/whatsapp-icon';
 import { MariaLogo } from '@/components/icons/maria-logo';
+import { FacebookIcon } from '@/components/icons/facebook';
+import InstagramIcon from '@/components/icons/instagram';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('ínicio');
+  const [activeTab, setActiveTab] = useState('main-image');
   const [isScrolledPastGrid, setIsScrolledPastGrid] = useState(false);
   const words = ['Qualidade', 'Procedêncida', 'Confiança', 'Excelência'];
+  const buttonsClassnames =
+    'hover:scale-105 transition duration-1000 ease-in-out hover:translate-x-2';
 
   useEffect(() => {
     const handleScroll = () => {
-      const gridElement = document.getElementById('serviços');
+      const gridElement = document.getElementById('ínicio');
       if (gridElement) {
         const gridBottom = gridElement.getBoundingClientRect().bottom;
         gridBottom < 0 ? setIsScrolledPastGrid(true) : setIsScrolledPastGrid(false);
@@ -76,16 +80,16 @@ export default function Home() {
     {
       title: 'Outras Áreas',
       description: (
-        <ul className="list-disc ml-5">
+        <ul className="list-disc">
           <li>Cível;</li>
           <li>Consumidor;</li>
           <li>Família.</li>
         </ul>
       ),
       image: '/imagem-maria-2.png',
-      className: 'bg-accent text-white w-1/3',
-      titleClassName: 'text-black pt-10',
-      descriptionClassName: 'text-black'
+      className: 'bg-accent text-white w-1/3 text-lg',
+      titleClassName: 'text-black pt-10 ml-0',
+      descriptionClassName: 'text-black ml-0'
     }
   ];
 
@@ -100,7 +104,7 @@ export default function Home() {
         activeTab={activeTab}
         handleNavClick={handleNavClick}
       />
-      <div className="absolute w-full h-screen" id="ínicio">
+      <div className="absolute w-full h-screen">
         <Image
           id="main-image"
           alt="home page image"
@@ -112,21 +116,28 @@ export default function Home() {
       </div>
       <main className="relative py-12">
         <>
-          <section className="flex w-screen py-40 h-screen">
-            <div className="flex flex-col text-accent ml-28 leading-none w-1/3 p-6 place-items-center">
-              <MariaLogo className={'flex stroke-accent h-1/2'} width="" height="60" />
-              <div className="text-5xl "> Maria Eduarda Risso</div>
-              <div className="text-2xl text-gray-300">Advogada</div>
+          <section
+            className="relative flex justify-center place-content-center w-screen pt-40 h-screen"
+            id="ínicio">
+            <div className="flex flex-col text-accent ml-20 leading-none w-1/3 p-6 place-items-center h-96">
+              <MariaLogo
+                className={'flex stroke-accent fill-accent h-1/2'}
+                width=""
+                height="60"
+                barDistance="860"
+              />
+              <div className="text-5xl font-libre_Baskerville"> Maria Eduarda Risso</div>
+              <div className="text-2xl font-playfairDisplay text-gray-300">Advogada</div>
             </div>
-            <div className="flex w-1/2 justify-center place-items-center 2xl:ml-28 xl:ml-20">
-              <button className="bg-accent w-48 h-10 hover:bg-opacity-75 transition duration-700 ease-in-out">
+            <div className="flex w-1/2 justify-center place-items-center 2xl:ml-28 xl:ml-[65px] h-96 mt-6">
+              <button className="bg-accent w-48 h-10 hover:bg-opacity-75 transition duration-700 ease-in-out font-libre_Baskerville">
                 ATUAÇÃO
               </button>
             </div>
           </section>
         </>
         <>
-          <section id="serviços" className="w-full flex flex-col h-screen pt-24 bg-[#e3dfd6]">
+          <section id="serviços" className="w-full flex flex-col h-screen pt-24 bg-[#e3dfd6] ">
             <h2 className=" text-5xl font-bold mb-8 text-accent text-center">Áreas de atuação</h2>
             <div className="flex mx-4">
               {services.map((service, index) => (
@@ -142,7 +153,7 @@ export default function Home() {
                       className="object-cover h-[50%] opacity-80"
                     />
                   )}
-                  <div className={`flex flex-col h-[160px]`}>
+                  <div className={`flex flex-col h-[200px]`}>
                     <h3
                       className={`text-3xl text-start ml-8 mb-2 font-bold ${service.titleClassName}`}>
                       {service.title}
@@ -168,16 +179,24 @@ export default function Home() {
                   className="rounded-full mr-8"
                 />
                 <div>
-                  <h2 className={`text-5xl font-bold mb-6 text-accent`}>Maria Eduarda Risso</h2>
-                  <WhatsAppIcon className="w-10 h-10 stroke-accent fill-accent" />
-                  <p className="leading-relaxed font-din-next text-accent">
-                    A Dra. Jane Smith é especialista em Direito do Trabalho e Direito
-                    Previdenciário, com mais de 20 anos de experiência. Formada pela Universidade de
-                    São Paulo, possui mestrado em Direito do Trabalho e é membro ativo da OAB-SP.
-                    Sua paixão é defender os direitos dos trabalhadores e garantir que seus clientes
-                    recebam o devido suporte em questões previdenciárias. Ao longo de sua carreira,
-                    a Dra. Jane já atendeu mais de 1000 casos com sucesso, sempre priorizando a
-                    ética e a excelência em seu trabalho.
+                  <h2 className={`text-5xl mb-6 text-accent`}>Maria Eduarda Risso</h2>
+                  <button
+                    className={buttonsClassnames}
+                    onClick={() =>
+                      (window.location.href = 'https://api.whatsapp.com/send?phone=5546999750201')
+                    }>
+                    <InstagramIcon className="w-10 h-10 stroke-accent fill-accent" />
+                  </button>
+                  <button
+                    className={buttonsClassnames}
+                    onClick={() =>
+                      (window.location.href = 'https://api.whatsapp.com/send?phone=5546999750201')
+                    }>
+                    <WhatsAppIcon className="w-10 h-10 stroke-accent fill-accent" />
+                  </button>
+                  <p className="leading-relaxed">
+                    Advogada inscrita na OAB/PR 111.038. Formada em Direito pela Universidade
+                    Estadual do Oeste do Paraná, campus de Francisco Beltrão.
                   </p>
                 </div>
               </div>

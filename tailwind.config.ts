@@ -1,4 +1,3 @@
-import { lancelot, robotoCondesedRegular } from '@/app/layout';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -27,7 +26,11 @@ const config: Config = {
       },
       fontFamily: {
         lancelot: ['Lancelot'],
-        robotoCondesedRegular: ['RobotoCondensed-Regular']
+        robotoCondesedRegular: ['RobotoCondensed-Regular'],
+        libre_Baskerville: ['Libre Baskerville'],
+        inter: ['Inter'],
+        lateef: ['Lateef'],
+        playfairDisplay: ['Playfair Display']
       }
     }
   },

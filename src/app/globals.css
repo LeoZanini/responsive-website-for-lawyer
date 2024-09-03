@@ -16,13 +16,6 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
-  font-family: 'RobotoCondensed-Regular', 'sans-serif';
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -36,4 +29,26 @@ body {
 @font-face {
   font-family: 'RobotoCondensed-Regular';
   src: url('/fonts/RobotoCondensed-Regular.ttf') format('truetype');
+}
+
+h2 {
+  font-family: 'limer-baskerville';
+}
+
+h3 {
+  font-family: 'limer-baskerville';
+}
+
+h1 {
+  font-family: 'limer-baskerville';
+}
+
+@font-face {
+  font-family: 'Libre-baskerville';
+  src: url('/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
 }
