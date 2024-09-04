@@ -30,6 +30,9 @@
   font-family: 'RobotoCondensed-Regular';
   src: url('/fonts/RobotoCondensed-Regular.ttf') format('truetype');
 }
+body {
+  background: #323232;
+}
 
 h2 {
   font-family: 'limer-baskerville';
@@ -51,4 +54,10 @@ h1 {
 @font-face {
   font-family: 'PlayfairDisplay';
   src: url('/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }

@@ -5,17 +5,22 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { WhatsAppIcon } from '@/components/icons/whatsapp-icon';
+import { IconWhatsapp } from '@/components/icons/icon-whatsapp';
 import { MariaLogo } from '@/components/icons/maria-logo';
-import { FacebookIcon } from '@/components/icons/facebook';
-import InstagramIcon from '@/components/icons/instagram';
+import InstagramIcon from '@/components/icons/icon-instagram';
+import { LinkButtons } from '@/components/link-buttons';
+import IconFacebook from '@/components/icons/icon-facebook';
+import IconInstagram from '@/components/icons/icon-instagram';
+import IconMagnifyingGlass from '@/components/icons/icon-magnifying-glass';
+import IconLinkedin from '@/components/icons/icon-linkedin';
+import { IconJusbrasil } from '@/components/icons/icon-jusbrasil';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import IconLocation from '@/components/icons/icon-location';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('main-image');
   const [isScrolledPastGrid, setIsScrolledPastGrid] = useState(false);
   const words = ['Qualidade', 'Procedêncida', 'Confiança', 'Excelência'];
-  const buttonsClassnames =
-    'hover:scale-105 transition duration-1000 ease-in-out hover:translate-x-2';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +42,17 @@ export default function Home() {
       setActiveTab(sectionId);
     }
   };
-
+  const icons = [
+    {
+      icon: IconWhatsapp,
+      link: 'https://api.whatsapp.com/send?phone=5546999750201',
+      hover: 'Whatsapp'
+    },
+    { icon: IconFacebook, link: 'https://www.facebook.com/your-profile', hover: 'Facebook' },
+    { icon: IconInstagram, link: 'https://www.instagram.com/your-profile', hover: 'Instagram' },
+    { icon: IconJusbrasil, link: 'https://www.instagram.com/your-profile', hover: 'JusBrasil' },
+    { icon: IconLinkedin, link: 'https://www.instagram.com/your-profile', hover: 'Linkedin' }
+  ];
   const services = [
     {
       title: 'Direito Previdenciário',
@@ -94,7 +109,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col bg-primary-background text-primary-text overflow-x-hidden font-static">
+    <div className="flex flex-col text-primary-text overflow-x-hidden font-static">
       <Head>
         <title>Maria Eduarda Risso</title>
         <link rel="icon" href="/favicon.ico" />
@@ -168,36 +183,51 @@ export default function Home() {
           </section>
         </>
         <>
-          <section id="contato" className="h-screen pt-32">
-            <div className="bg-[#323232] shadow-xl border border-accent p-8">
-              <div className="flex items-center">
+          <section id="contato" className="h-screen pt-28">
+            <div className="">
+              <div className="flex justify-center place-items-start">
+                <div className="flex flex-col min-h-fit mt-6">
+                  {icons.map((item, index) => (
+                    <LinkButtons
+                      key={index}
+                      buttonClassName=""
+                      link={item.link}
+                      toolTip={item.hover}
+                      useDefault>
+                      <item.icon className="mt-1 w-14 h-12 stroke-accent fill-accent border-y border-l border-accent p-2" />
+                    </LinkButtons>
+                  ))}
+                </div>
                 <Image
-                  src="/maria.jpeg"
-                  alt="Jane Smith"
-                  width={200}
+                  src="/maria-high-res.JPG"
+                  alt="Advogada Maria Eduarda Risso"
+                  width={400}
                   height={200}
-                  className="rounded-full mr-8"
+                  className="mr-8 shadow-2xl opacity-85 object-cover"
                 />
-                <div>
-                  <h2 className={`text-5xl mb-6 text-accent`}>Maria Eduarda Risso</h2>
-                  <button
-                    className={buttonsClassnames}
-                    onClick={() =>
-                      (window.location.href = 'https://api.whatsapp.com/send?phone=5546999750201')
-                    }>
-                    <InstagramIcon className="w-10 h-10 stroke-accent fill-accent" />
-                  </button>
-                  <button
-                    className={buttonsClassnames}
-                    onClick={() =>
-                      (window.location.href = 'https://api.whatsapp.com/send?phone=5546999750201')
-                    }>
-                    <WhatsAppIcon className="w-10 h-10 stroke-accent fill-accent" />
-                  </button>
-                  <p className="leading-relaxed">
-                    Advogada inscrita na OAB/PR 111.038. Formada em Direito pela Universidade
-                    Estadual do Oeste do Paraná, campus de Francisco Beltrão.
+                <div className="flex flex-col w-[40%] mt-6">
+                  <h2 className={`text-5xl text-accent`}>Maria Eduarda Risso</h2>
+                  <p className="leading-relaxed w-[60%] text-justify p-4">
+                    Advogada inscrita na <span className="text-accent w-fit">OAB/PR 111.038.</span>
+                    <> </>Bacharela em Direito pela Universidade Estadual do Oeste do Paraná, campus
+                    de Francisco Beltrão. Pós-graduanda em Direito Privado Contemporâneo pela
+                    Faculdade de São Vicente/SP. Durante a graduação participei de grupos de
+                    pesquisa, desenvolvendo artigos e publicações, sobre Direito do Trabalho e
+                    Direito Previdenciário. Além disso, trabalhei desde o segundo ano de faculdade
+                    em escritório de advocacia, com ênfase nestas áreas. Ao me graduar, passei a
+                    exercer a profissão com foco em Direito do Trabalho e Direito Previdenciário.
+                    Desse modo, há mais de seis anos eu vivencio e trabalho nestas áreas, tendo
+                    construído vasta experiência no decorrer dos anos de atuação.
                   </p>
+                </div>
+              </div>
+              <div className="w-full relative flex flex-col mt-10">
+                <div className="bg-accent h-[2px] my-10">
+                  <MariaLogo
+                    className={`stroke-accent fill-accent absolute top-0 right-1/2`}
+                    width="80"
+                    height="80"
+                  />
                 </div>
               </div>
             </div>

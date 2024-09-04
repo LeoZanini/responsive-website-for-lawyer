@@ -1,4 +1,4 @@
-export const MariaLogo = (props) => {
+export const MariaLogo = (props: Record<string, string>) => {
   const { width, height, className, barDistance, colorPrimary, colorSecundary } = props;
   return (
     <svg
@@ -33,11 +33,13 @@ export const MariaLogo = (props) => {
         d="m0 0 2 1-4 3v2h3l3-3 1 10 1 32v311l-1 46-5-1-15-6-24-12-9-7-1-187v-56l1-76 1-6h-2l1-4 3-3 6-9 9-11 11-11 13-10z"
         fill="rgba(0,0,0,0.5)"
       />
-      <path
-        transform={`translate(67,${barDistance})`}
-        d="m0 0 5 2 8 7 5 5 9 10h1048l8-7 16-16 4-1 10 9 16 16 5 6-1 6-10 10-7 8-8 7-4 3-5-1-8-7-11-11-3-4-3-1h-1045l-8 7-16 16-6 1-10-9-17-17-3-4 1-5 9-10 19-19zm-1 21-9 9-1 4 9 10 5 1 9-9 1-4-7-8-3-3zm1101 0-10 10 1 5 9 9 3 1 10-10 1-5-8-9z"
-        fill={colorSecundary || 'rgba(168, 154, 102, 0.5)'}
-      />
+      {barDistance && (
+        <path
+          transform={`translate(67,${barDistance})`}
+          d="m0 0 5 2 8 7 5 5 9 10h1048l8-7 16-16 4-1 10 9 16 16 5 6-1 6-10 10-7 8-8 7-4 3-5-1-8-7-11-11-3-4-3-1h-1045l-8 7-16 16-6 1-10-9-17-17-3-4 1-5 9-10 19-19zm-1 21-9 9-1 4 9 10 5 1 9-9 1-4-7-8-3-3zm1101 0-10 10 1 5 9 9 3 1 10-10 1-5-8-9z"
+          fill={colorSecundary || 'rgba(168, 154, 102, 0.5)'}
+        />
+      )}
       <path
         transform="translate(712,424)"
         d="m0 0 3 3 12 19 4 5v2h2l7 8 10 9 10 8 1 13 1 4v180l-4 4-14 8-16 8-12 5-7 2-1-2v-251l1-23 2 3 2 4z"

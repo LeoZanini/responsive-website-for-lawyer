@@ -1,4 +1,4 @@
-export const LawIcon = ({ className }) => {
+export const LawIcon = ({ className }: { className: string }) => {
   return (
     <svg
       version="1.1"

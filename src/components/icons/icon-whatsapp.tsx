@@ -1,8 +1,8 @@
-export const WhatsAppIcon = ({ className }: { className: string }) => {
+export const IconWhatsapp = ({ className }: { className: string }) => {
   return (
     <svg
-      width="800px"
-      height="800px"
+      width="40"
+      height="40"
       viewBox="0 0 24 24"
       fill=""
       xmlns="http://www.w3.org/2000/svg"
