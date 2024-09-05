@@ -48,11 +48,11 @@ export default function IconButtons() {
   return (
     <div className="flex flex-col mt-6 place-items-center">
       {icons.map((item, index) => (
-        <LinkButtons key={index} link={item.link} toolTip={item.hover} useDefault>
+        <LinkButtons key={index} link={item.link} toolTip={item.hover}>
           <item.icon
-            className={`mt-2 p-1 w-16 h-12 stroke-accent fill-accent border-y border-l border-accent ${
+            className={`pr-3 py-2 mt-2 w-16 h-12 stroke-accent fill-accent border-y border-l border-accent ${
               !hoveredIcons[index] ? 'animate-pulse' : ''
-            } hover:-translate-x-1`}
+            } hover:-translate-x-1 transition-transform`}
             onMouseEnter={() => handleMouseEnter(index)}
           />
         </LinkButtons>

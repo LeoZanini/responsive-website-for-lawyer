@@ -8,7 +8,7 @@ export const IconJusbrasil: React.FC<{ className?: string }> = ({ className, ...
         alt="Ícone da Web global"
         width={90}
         height={90}
-        className="object-contain w-[80%] py-1"
+        className="object-contain w-[60%] py-1"
       />
     </div>
   );

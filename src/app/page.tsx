@@ -124,7 +124,7 @@ export default function Home() {
       <main className="relative py-12">
         <>
           <section
-            className="relative flex justify-center place-content-center w-screen pt-40 h-screen"
+            className="relative flex justify-center place-content-center w-screen lg:pt-40 2xl:pt-52 h-screen"
             id="ínicio">
             <div className="flex flex-col text-accent ml-20 leading-none w-1/3 p-6 place-items-center h-96">
               <MariaLogo
@@ -136,8 +136,10 @@ export default function Home() {
               <div className="text-5xl font-libre_Baskerville"> Maria Eduarda Risso</div>
               <div className="text-2xl font-playfairDisplay text-gray-300">Advogada</div>
             </div>
-            <div className="flex w-1/2 justify-center place-items-center 2xl:ml-28 xl:ml-[65px] h-96 mt-6">
-              <button className="bg-accent w-48 h-10 hover:bg-opacity-75 transition duration-700 ease-in-out font-libre_Baskerville">
+            <div className="flex w-1/2 justify-center place-items-center 2xl:ml-26 xl:ml-[62px] h-96 mt-6">
+              <button
+                className="border text-accent border-accent w-48 h-10 hover:bg-opacity-75 transition duration-700 ease-in-out font-libre_Baskerville"
+                onClick={() => handleNavClick('serviços')}>
                 ATUAÇÃO
               </button>
             </div>
@@ -175,60 +177,58 @@ export default function Home() {
           </section>
         </>
         <>
-          <section id="contato" className="h-full pt-28">
-            <div className="px-20">
-              {/* Ícones e descrição */}
-              <div className="flex mt-6 justify-center ">
-                <IconButtons />
-                <Image
-                  src="/maria-high-res.JPG"
-                  alt="Advogada Maria Eduarda Risso"
-                  width={450}
-                  height={200}
-                  className="mr-8 shadow-2xl opacity-85 object-cover border border-accent"
-                />
-                <div className="flex flex-col w-[40%]">
-                  <h2 className="text-5xl text-accent text-left py-6">Maria Eduarda Risso</h2>
-                  <p className="leading-relaxed text-justify py-6 pr-2">
-                    <span className="text-accent w-fit font-bold">Advogada</span> inscrita na{' '}
-                    <span className="text-accent w-fit font-bold">OAB/PR 111.038</span>, bacharela
-                    em Direito pela Universidade Estadual do Oeste do Paraná, campus de Francisco
-                    Beltrão, e atualmente{' '}
-                    <span className="text-accent w-fit font-bold">pós-graduanda</span> em Direito
-                    Privado Contemporâneo pela Faculdade de São Vicente/SP. Durante a graduação,
-                    participei ativamente de grupos de pesquisa, com foco na produção de artigos e
-                    publicações sobre{' '}
-                    <span className="text-accent w-fit font-bold">Direito do Trabalho</span> e{' '}
-                    <span className="text-accent w-fit font-bold">Direito Previdenciário</span>.
-                    <br />
-                    <br />
-                    Além disso, desde o segundo ano de faculdade, atuei em escritórios de advocacia,
-                    adquirindo{' '}
-                    <span className="text-accent w-fit font-bold">sólida experiência</span> nessas
-                    áreas. Após minha graduação, passei a exercer a profissão com foco principal nas
-                    áreas de Direito do Trabalho e Previdenciário. Com mais de seis anos de prática
-                    nessas especialidades, venho desenvolvendo uma experiência e expertise, atuando
-                    de forma <span className="text-accent w-fit font-bold">comprometida</span> e
-                    aprofundada ao longo dos anos.
-                  </p>
-                </div>
+          <section id="contato" className="w-full flex flex-col h-full lg:mt-12 xl:mt-12 2xl:mt-24">
+            <div className="flex w-full justify-center">
+              <IconButtons />
+              <Image
+                src="/maria-high-res.JPG"
+                alt="Advogada Maria Eduarda Risso"
+                width={400}
+                height={400}
+                className="mr-8 shadow-2xl opacity-85 object-cover border border-accent"
+              />
+              <div className="flex flex-col w-[40%]">
+                <h2 className="text-5xl text-accent text-left py-6">Maria Eduarda Risso</h2>
+                <p className="leading-relaxed text-justify py-6 pr-2 first-letter:text-xl">
+                  <span className="text-accent w-fit font-bold">Advogada</span> inscrita na{' '}
+                  <span className="text-accent w-fit font-bold">OAB/PR 111.038</span>, bacharela em
+                  Direito pela Universidade Estadual do Oeste do Paraná, campus de Francisco
+                  Beltrão, e atualmente{' '}
+                  <span className="text-accent w-fit font-bold">pós-graduanda</span> em Direito
+                  Privado Contemporâneo pela Faculdade de São Vicente/SP. Durante a graduação,
+                  participei ativamente de grupos de pesquisa, com foco na produção de artigos e
+                  publicações sobre{' '}
+                  <span className="text-accent w-fit font-bold">Direito do Trabalho</span> e{' '}
+                  <span className="text-accent w-fit font-bold">Direito Previdenciário</span>.
+                  <br />
+                  <br />
+                  Além disso, desde o segundo ano de faculdade, atuei em escritórios de advocacia,
+                  adquirindo <span className="text-accent w-fit font-bold">
+                    sólida experiência
+                  </span>{' '}
+                  nessas áreas. Após minha graduação, passei a exercer a profissão com foco
+                  principal nas áreas de Direito do Trabalho e Previdenciário. Com mais de seis anos
+                  de prática nessas especialidades, venho desenvolvendo uma experiência e expertise,
+                  atuando de forma <span className="text-accent w-fit font-bold">comprometida</span>{' '}
+                  e aprofundada ao longo dos anos.
+                </p>
               </div>
             </div>
             {/* Mapa e Endereço */}
-            <div className="flex flex-col justify-center place-items-center mt-32">
-              <h3 className="text-5xl text-accent mb-4">Meu Endereço</h3>
-              <p className="text-lg text-center mb-6">
-                Avenida General Osório, 184, Cango, Francisco Beltrão - PR, 85604-240
-              </p>
-              <iframe
-                loading="lazy"
-                className="w-[350px] h-[250px] border-none"
-                style={{ border: 0 }}
-                referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com.br/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEI}&q=Av.+Gen.+Osório,+184+-+Cango,+Francisco+Beltrão+-+PR,+85604-240`}
-                allowFullScreen></iframe>
+            <div className="flex flex-col w-full justify-start place-items-center mt-12">
+              <div className="flex flex-col place-items-center">
+                <div className="mb-6 flex justify-center place-items-center">
+                  <IconLocation className="w-10 mr-6 text-accent" />
+                  <h3 className="text-5xl text-accent"> Meu Endereço</h3>
+                </div>
+                <iframe
+                  loading="lazy"
+                  className="w-[650px] h-[400px] border-2 border-accent"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://www.google.com.br/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEI}&q=Av.+Gen.+Osório,+184+-+Cango,+Francisco+Beltrão+-+PR,+85604-240`}
+                  allowFullScreen></iframe>{' '}
+              </div>
             </div>
-
             {/* Linha divisória com logo */}
             <div className="w-full relative flex flex-col mt-10">
               <div className="bg-accent h-[2px] my-10 flex place-content-center">

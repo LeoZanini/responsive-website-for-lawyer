@@ -11,7 +11,7 @@ interface LinkButtonsProps {
 export const LinkButtons: React.FC<LinkButtonsProps> = (props) => {
   const { buttonClassName, children, useDefault, link, toolTip } = props;
 
-  const defaultClassName = ' ';
+  const defaultClassName = '';
 
   return (
     <TooltipProvider>
