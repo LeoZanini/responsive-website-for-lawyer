@@ -16,6 +16,8 @@ import IconLinkedin from '@/components/icons/icon-linkedin';
 import { IconJusbrasil } from '@/components/icons/icon-jusbrasil';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import IconLocation from '@/components/icons/icon-location';
+import MapComponent from '@/components/map-component';
+import IconButtons from '@/components/Icon-list';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('main-image');
@@ -42,17 +44,7 @@ export default function Home() {
       setActiveTab(sectionId);
     }
   };
-  const icons = [
-    {
-      icon: IconWhatsapp,
-      link: 'https://api.whatsapp.com/send?phone=5546999750201',
-      hover: 'Whatsapp'
-    },
-    { icon: IconFacebook, link: 'https://www.facebook.com/your-profile', hover: 'Facebook' },
-    { icon: IconInstagram, link: 'https://www.instagram.com/your-profile', hover: 'Instagram' },
-    { icon: IconJusbrasil, link: 'https://www.instagram.com/your-profile', hover: 'JusBrasil' },
-    { icon: IconLinkedin, link: 'https://www.instagram.com/your-profile', hover: 'Linkedin' }
-  ];
+
   const services = [
     {
       title: 'Direito Previdenciário',
@@ -183,52 +175,68 @@ export default function Home() {
           </section>
         </>
         <>
-          <section id="contato" className="h-screen pt-28">
-            <div className="">
-              <div className="flex justify-center place-items-start">
-                <div className="flex flex-col min-h-fit mt-6">
-                  {icons.map((item, index) => (
-                    <LinkButtons
-                      key={index}
-                      buttonClassName=""
-                      link={item.link}
-                      toolTip={item.hover}
-                      useDefault>
-                      <item.icon className="mt-1 w-14 h-12 stroke-accent fill-accent border-y border-l border-accent p-2" />
-                    </LinkButtons>
-                  ))}
-                </div>
+          <section id="contato" className="h-full pt-28">
+            <div className="px-20">
+              {/* Ícones e descrição */}
+              <div className="flex mt-6 justify-center ">
+                <IconButtons />
                 <Image
                   src="/maria-high-res.JPG"
                   alt="Advogada Maria Eduarda Risso"
-                  width={400}
+                  width={450}
                   height={200}
-                  className="mr-8 shadow-2xl opacity-85 object-cover"
+                  className="mr-8 shadow-2xl opacity-85 object-cover border border-accent"
                 />
-                <div className="flex flex-col w-[40%] mt-6">
-                  <h2 className={`text-5xl text-accent`}>Maria Eduarda Risso</h2>
-                  <p className="leading-relaxed w-[60%] text-justify p-4">
-                    Advogada inscrita na <span className="text-accent w-fit">OAB/PR 111.038.</span>
-                    <> </>Bacharela em Direito pela Universidade Estadual do Oeste do Paraná, campus
-                    de Francisco Beltrão. Pós-graduanda em Direito Privado Contemporâneo pela
-                    Faculdade de São Vicente/SP. Durante a graduação participei de grupos de
-                    pesquisa, desenvolvendo artigos e publicações, sobre Direito do Trabalho e
-                    Direito Previdenciário. Além disso, trabalhei desde o segundo ano de faculdade
-                    em escritório de advocacia, com ênfase nestas áreas. Ao me graduar, passei a
-                    exercer a profissão com foco em Direito do Trabalho e Direito Previdenciário.
-                    Desse modo, há mais de seis anos eu vivencio e trabalho nestas áreas, tendo
-                    construído vasta experiência no decorrer dos anos de atuação.
+                <div className="flex flex-col w-[40%]">
+                  <h2 className="text-5xl text-accent text-left py-6">Maria Eduarda Risso</h2>
+                  <p className="leading-relaxed text-justify py-6 pr-2">
+                    <span className="text-accent w-fit font-bold">Advogada</span> inscrita na{' '}
+                    <span className="text-accent w-fit font-bold">OAB/PR 111.038</span>, bacharela
+                    em Direito pela Universidade Estadual do Oeste do Paraná, campus de Francisco
+                    Beltrão, e atualmente{' '}
+                    <span className="text-accent w-fit font-bold">pós-graduanda</span> em Direito
+                    Privado Contemporâneo pela Faculdade de São Vicente/SP. Durante a graduação,
+                    participei ativamente de grupos de pesquisa, com foco na produção de artigos e
+                    publicações sobre{' '}
+                    <span className="text-accent w-fit font-bold">Direito do Trabalho</span> e{' '}
+                    <span className="text-accent w-fit font-bold">Direito Previdenciário</span>.
+                    <br />
+                    <br />
+                    Além disso, desde o segundo ano de faculdade, atuei em escritórios de advocacia,
+                    adquirindo{' '}
+                    <span className="text-accent w-fit font-bold">sólida experiência</span> nessas
+                    áreas. Após minha graduação, passei a exercer a profissão com foco principal nas
+                    áreas de Direito do Trabalho e Previdenciário. Com mais de seis anos de prática
+                    nessas especialidades, venho desenvolvendo uma experiência e expertise, atuando
+                    de forma <span className="text-accent w-fit font-bold">comprometida</span> e
+                    aprofundada ao longo dos anos.
                   </p>
                 </div>
               </div>
-              <div className="w-full relative flex flex-col mt-10">
-                <div className="bg-accent h-[2px] my-10">
-                  <MariaLogo
-                    className={`stroke-accent fill-accent absolute top-0 right-1/2`}
-                    width="80"
-                    height="80"
-                  />
-                </div>
+            </div>
+            {/* Mapa e Endereço */}
+            <div className="flex flex-col justify-center place-items-center mt-32">
+              <h3 className="text-5xl text-accent mb-4">Meu Endereço</h3>
+              <p className="text-lg text-center mb-6">
+                Avenida General Osório, 184, Cango, Francisco Beltrão - PR, 85604-240
+              </p>
+              <iframe
+                loading="lazy"
+                className="w-[350px] h-[250px] border-none"
+                style={{ border: 0 }}
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com.br/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEI}&q=Av.+Gen.+Osório,+184+-+Cango,+Francisco+Beltrão+-+PR,+85604-240`}
+                allowFullScreen></iframe>
+            </div>
+
+            {/* Linha divisória com logo */}
+            <div className="w-full relative flex flex-col mt-10">
+              <div className="bg-accent h-[2px] my-10 flex place-content-center">
+                <MariaLogo
+                  className="stroke-accent fill-accent absolute top-0"
+                  width="80"
+                  height="80"
+                />
               </div>
             </div>
           </section>

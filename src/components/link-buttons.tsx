@@ -11,8 +11,7 @@ interface LinkButtonsProps {
 export const LinkButtons: React.FC<LinkButtonsProps> = (props) => {
   const { buttonClassName, children, useDefault, link, toolTip } = props;
 
-  const defaultClassName =
-    'group transition duration-300 hover:-translate-x-1 ease-in-out relative ';
+  const defaultClassName = ' ';
 
   return (
     <TooltipProvider>

@@ -1,13 +1,15 @@
 import Image from 'next/image';
 
-export const IconJusbrasil: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+export const IconJusbrasil: React.FC<{ className?: string }> = ({ className, ...rest }) => {
   return (
-    <Image
-      src="/jusBrasilCustomizado.png"
-      alt="Ícone da Web global"
-      width={32}
-      height={32}
-      className={`${props.className} object-contain`}
-    />
+    <div className={`flex justify-center py-[3px] ${className}`} {...rest}>
+      <Image
+        src="/jusBrasilCustomizado.png"
+        alt="Ícone da Web global"
+        width={90}
+        height={90}
+        className="object-contain w-[80%] py-1"
+      />
+    </div>
   );
 };
