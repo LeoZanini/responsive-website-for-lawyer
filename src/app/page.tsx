@@ -1,22 +1,10 @@
 'use client';
 import { HeaderComponent } from '@/components/header';
-import { FlipWords } from '@/components/ui/flip-words';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { IconWhatsapp } from '@/components/icons/icon-whatsapp';
 import { MariaLogo } from '@/components/icons/maria-logo';
-import InstagramIcon from '@/components/icons/icon-instagram';
-import { LinkButtons } from '@/components/link-buttons';
-import IconFacebook from '@/components/icons/icon-facebook';
-import IconInstagram from '@/components/icons/icon-instagram';
-import IconMagnifyingGlass from '@/components/icons/icon-magnifying-glass';
-import IconLinkedin from '@/components/icons/icon-linkedin';
-import { IconJusbrasil } from '@/components/icons/icon-jusbrasil';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import IconLocation from '@/components/icons/icon-location';
-import MapComponent from '@/components/map-component';
 import IconButtons from '@/components/Icon-list';
 
 export default function Home() {

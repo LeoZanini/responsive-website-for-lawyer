@@ -1,7 +1,4 @@
-import { lancelot, lateef } from '@/app/layout';
-import { LawIcon } from './icons/law-icon';
 import { MariaLogo } from './icons/maria-logo';
-import { ReactElement } from 'react';
 import IconBxlWhatsapp from './icons/icon-whatsapp';
 
 type HeaderComponentProps = {
