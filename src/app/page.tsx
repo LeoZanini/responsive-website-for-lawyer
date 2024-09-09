@@ -126,7 +126,7 @@ export default function Home() {
             </div>
             <div className="flex w-1/2 justify-center place-items-center 2xl:ml-26 xl:ml-[62px] h-96 mt-6">
               <button
-                className="border text-accent border-accent w-48 h-10 hover:bg-opacity-75 transition duration-700 ease-in-out font-libre_Baskerville"
+                className="border text-accent border-accent hover:scale-[99%] w-48 h-10 hover:opacity-80 transition duration-1000 ease-in-out font-libre_Baskerville"
                 onClick={() => handleNavClick('serviços')}>
                 ATUAÇÃO
               </button>

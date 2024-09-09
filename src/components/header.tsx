@@ -40,7 +40,11 @@ export const HeaderComponent = ({
             </button>
           </div>
           <div className="flex flex-col justify-center"></div>
-          <button className="flex text-sm h-8 mr-10 place-items-center text-accent p-2 border border-accent hover:opacity-80 transition duration-1000 ease-in-out">
+          <button
+            onClick={() =>
+              (window.location.href = 'http://api.whatsapp.com/send?phone=5546999750201')
+            }
+            className="flex text-sm h-8 mr-10 place-items-center text-accent p-2 border border-accent hover:opacity-80 hover:scale-[99%] transition duration-1000 ease-in-out">
             <IconBxlWhatsapp className="w-6 fill-accent mr-2" />
             Entre em Contato
           </button>

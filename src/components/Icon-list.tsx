@@ -25,22 +25,22 @@ export default function IconButtons() {
     },
     {
       icon: IconFacebook,
-      link: 'https://www.facebook.com/your-profile',
+      link: 'https://www.facebook.com/adv.mariaeduardarisso',
       hover: 'Facebook'
     },
     {
       icon: IconInstagram,
-      link: 'https://www.instagram.com/your-profile',
+      link: 'https://www.instagram.com/adv.mariaeduardarisso/',
       hover: 'Instagram'
     },
     {
       icon: IconJusbrasil,
-      link: 'https://www.instagram.com/your-profile',
+      link: 'https://mariaeduardarisso.jusbrasil.com.br/',
       hover: 'JusBrasil'
     },
     {
       icon: IconLinkedin,
-      link: 'https://www.instagram.com/your-profile',
+      link: 'https://www.linkedin.com/in/mariaeduardarisso/',
       hover: 'Linkedin'
     }
   ];
