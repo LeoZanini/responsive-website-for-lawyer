@@ -58,7 +58,7 @@ export default function Home() {
           <li>Reconhecimento de Vínculo Empregatício;</li>
           <li>Reversão da Justa Causa;</li>
           <li>Horas Extras;</li>
-          <li>Acidente de Trabalho</li>
+          <li>Acidente de Trabalho;</li>
           <li>Adicional de Insalubridade e Periculosidade;</li>
           <li>Diferenças Salariais;</li>
           <li>Rescisão Indireta;</li>
