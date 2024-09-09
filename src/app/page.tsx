@@ -10,7 +10,6 @@ import IconButtons from '@/components/Icon-list';
 export default function Home() {
   const [activeTab, setActiveTab] = useState('main-image');
   const [isScrolledPastGrid, setIsScrolledPastGrid] = useState(false);
-  const words = ['Qualidade', 'Procedêncida', 'Confiança', 'Excelência'];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +47,7 @@ export default function Home() {
         </ul>
       ),
       image: '/imagem-exemplo.jpg',
-      className: 'bg-firstCard-background w-1/3 p-8',
+      className: 'bg-firstCard-background md:w-1/3 p-8',
       titleClassName: 'text-white w-[50%]',
       descriptionClassName: ''
     },
@@ -68,8 +67,8 @@ export default function Home() {
         </ul>
       ),
       image: '/imagem-exemplo6.jpg',
-      className: 'bg-white w-1/3 p-8',
-      titleClassName: 'text-black w-[60%]',
+      className: 'bg-white md:w-1/3 p-8',
+      titleClassName: 'text-black w-[50%]',
       descriptionClassName: 'text-black'
     },
     {
@@ -82,9 +81,9 @@ export default function Home() {
         </ul>
       ),
       image: '/imagem-maria-2.png',
-      className: 'bg-accent text-white w-1/3 text-lg',
-      titleClassName: 'text-black pt-10 ml-0',
-      descriptionClassName: 'text-black ml-0'
+      className: 'bg-accent text-white md:w-[30%]',
+      titleClassName: 'text-black pt-10 ml-0 2xl:text-4xl',
+      descriptionClassName: 'text-black ml-0 pb-8 md:pb-0 xl:text-xl'
     }
   ];
 
@@ -101,30 +100,30 @@ export default function Home() {
       />
       <div className="absolute w-full h-screen">
         <Image
+          className="w-screen h-screen md:w-full lg:h-auto object-cover md:opacity-80 opacity-40"
           id="main-image"
           alt="home page image"
           src="/imagem-maria-up.png"
-          width={2048}
-          height={1144}
-          className="object-fill opacity-80"
+          width={1920}
+          height={1080}
         />
       </div>
-      <main className="relative py-12">
+      <main className="relative lg:py-8">
         <>
           <section
-            className="relative flex justify-center place-content-center w-screen lg:pt-40 2xl:pt-52 h-screen"
+            className="relative flex flex-col md:flex-row justify-center place-content-center w-screen md:pt-24 lg:pt-40 2xl:pt-52 h-screen"
             id="ínicio">
-            <div className="flex flex-col text-accent ml-20 leading-none w-1/3 p-6 place-items-center h-96">
+            <div className="flex flex-col h-[60vh] text-accent md:ml-20 leading-none md:w-[80vh] p-6 place-items-center justify-center md:h-96">
               <MariaLogo
                 className={'flex stroke-accent fill-accent h-1/2'}
                 width=""
                 height="60"
                 barDistance="860"
               />
-              <div className="text-5xl font-libre_Baskerville"> Maria Eduarda Risso</div>
+              <div className="text-3xl lg:text-5xl font-libre_Baskerville">Maria Eduarda Risso</div>
               <div className="text-2xl font-playfairDisplay text-gray-300">Advogada</div>
             </div>
-            <div className="flex w-1/2 justify-center place-items-center 2xl:ml-26 xl:ml-[62px] h-96 mt-6">
+            <div className="flex md:w-1/2 justify-center place-items-center 2xl:ml-26 xl:ml-[62px] md:h-96 h-[10vh] mt-6">
               <button
                 className="border text-accent border-accent hover:scale-[99%] w-48 h-10 hover:opacity-80 transition duration-1000 ease-in-out font-libre_Baskerville"
                 onClick={() => handleNavClick('serviços')}>
@@ -134,9 +133,11 @@ export default function Home() {
           </section>
         </>
         <>
-          <section id="serviços" className="w-full flex flex-col h-screen pt-24 bg-[#e3dfd6] ">
+          <section
+            id="serviços"
+            className="w-full flex flex-col h-fit lg:h-[100%] pt-24 2xl:pt-28 bg-[#e3dfd6] pb-24">
             <h2 className=" text-5xl font-bold mb-8 text-accent text-center">Áreas de atuação</h2>
-            <div className="flex mx-4">
+            <div className="flex md:flex-row flex-col mx-4 space-y-10 md:space-y-0 lg:pb-10 md:pb-6">
               {services.map((service, index) => (
                 <div
                   className={`flex place-items-center flex-col mx-4 shadow-lg border border-accent hover:scale-[102%] transition-scale duration-1000 ${service.className}`}
@@ -150,12 +151,12 @@ export default function Home() {
                       className="object-cover h-[50%] opacity-80"
                     />
                   )}
-                  <div className={`flex flex-col h-[200px]`}>
+                  <div className={`flex flex-col 2xl:text-lg`}>
                     <h3
-                      className={`text-3xl text-start ml-8 mb-2 font-bold ${service.titleClassName}`}>
+                      className={`text-3xl text-start md:ml-8 mb-2 font-bold ${service.titleClassName}`}>
                       {service.title}
                     </h3>
-                    <div className={`m-2 ml-12 h-full ${service.descriptionClassName}`}>
+                    <div className={`md:m-2 md:ml-12 h-full ${service.descriptionClassName}`}>
                       {service.description}
                     </div>
                   </div>
@@ -165,45 +166,51 @@ export default function Home() {
           </section>
         </>
         <>
-          <section id="contato" className="w-full flex flex-col h-full lg:mt-12 xl:mt-12 2xl:mt-24">
-            <div className="flex w-full justify-center">
-              <IconButtons />
-              <Image
-                src="/maria-high-res.JPG"
-                alt="Advogada Maria Eduarda Risso"
-                width={400}
-                height={400}
-                className="mr-8 shadow-2xl opacity-85 object-cover border border-accent"
-              />
-              <div className="flex flex-col w-[40%]">
-                <h2 className="text-5xl text-accent text-left py-6">Maria Eduarda Risso</h2>
+          <section id="contato" className="w-full flex flex-col h-full mt-12 xl:mt-12 2xl:mt-24">
+            <div className="flex md:flex-row flex-col w-full justify-center">
+              <div className="flex p-4 md:p-0 mt-10">
+                <IconButtons />
+                <Image
+                  className="mr-8 shadow-2xl w-[80%] h-[60%] md:w-[400px] opacity-85 object-cover border border-accent md:h-auto md:opacity-80"
+                  src="/maria-high-res.JPG"
+                  alt="Advogada Maria Eduarda Risso"
+                  width={400}
+                  height={400}
+                />
+              </div>
+              <div className="flex flex-col md:w-[40%] p-6">
+                <h2 className="md:text-5xl text-4xl text-accent md:text-left text-left py-6">
+                  Maria Eduarda Risso
+                </h2>
                 <p className="leading-relaxed text-justify py-6 pr-2 first-letter:text-xl">
-                  <span className="text-accent w-fit font-bold">Advogada</span> inscrita na{' '}
-                  <span className="text-accent w-fit font-bold">OAB/PR 111.038</span>, bacharela em
+                  <span className="text-accent font-bold">Advogada </span>inscrita na{' '}
+                  <span className="text-accent font-bold">OAB/PR 111.038</span>, bacharela em
                   Direito pela Universidade Estadual do Oeste do Paraná, campus de Francisco
-                  Beltrão, e atualmente{' '}
-                  <span className="text-accent w-fit font-bold">pós-graduanda</span> em Direito
-                  Privado Contemporâneo pela Faculdade de São Vicente/SP. Durante a graduação,
-                  participei ativamente de grupos de pesquisa, com foco na produção de artigos e
-                  publicações sobre{' '}
-                  <span className="text-accent w-fit font-bold">Direito do Trabalho</span> e{' '}
-                  <span className="text-accent w-fit font-bold">Direito Previdenciário</span>.
+                  Beltrão, e, atualmente,{' '}
+                  <span className="text-accent font-bold">pós-graduanda </span>
+                  em Direito Privado Contemporâneo pela Faculdade de São Vicente/SP.
                   <br />
                   <br />
-                  Além disso, desde o segundo ano de faculdade, atuei em escritórios de advocacia,
-                  adquirindo <span className="text-accent w-fit font-bold">
-                    sólida experiência
-                  </span>{' '}
-                  nessas áreas. Após minha graduação, passei a exercer a profissão com foco
-                  principal nas áreas de Direito do Trabalho e Previdenciário. Com mais de seis anos
-                  de prática nessas especialidades, venho desenvolvendo uma experiência e expertise,
-                  atuando de forma <span className="text-accent w-fit font-bold">comprometida</span>{' '}
-                  e aprofundada ao longo dos anos.
+                  Durante a graduação participei ativamente de grupos de pesquisa, com foco na
+                  produção de artigos e publicações sobre{' '}
+                  <span className="text-accent font-bold">Direito do Trabalho </span> e
+                  <span className="text-accent font-bold"> Direito Previdenciário.</span> Além
+                  disso, desde o segundo ano de faculdade atuei em escritórios de advocacia,
+                  adquirindo <span className="text-accent font-bold"> sólida experiência.</span>{' '}
+                  <br />
+                  <br /> Após minha graduação, passei a exercer a profissão com foco principal nas
+                  áreas de Direito do Trabalho e Previdenciário.{' '}
+                  <span className="text-accent font-bold">Há mais de seis anos</span> eu vivencio e
+                  trabalho nestas áreas, desenvolvendo expertise e{' '}
+                  <span className="text-accent font-bold">atuando</span> de forma{' '}
+                  <span className="text-accent font-bold">comprometida</span> e{' '}
+                  <span className="text-accent font-bold">aprofundada</span> para cada cliente.
+                  <span className="text-accent font-bold"></span>
                 </p>
               </div>
             </div>
             {/* Mapa e Endereço */}
-            <div className="flex flex-col w-full justify-start place-items-center mt-12">
+            <div className="flex flex-col md:w-full justify-start place-items-center mt-12">
               <div className="flex flex-col place-items-center">
                 <div className="mb-6 flex justify-center place-items-center">
                   <IconLocation className="w-10 mr-6 text-accent" />
@@ -211,7 +218,7 @@ export default function Home() {
                 </div>
                 <iframe
                   loading="lazy"
-                  className="w-[650px] h-[400px] border-2 border-accent"
+                  className="w-[80vw] h-[80vh] md:w-[650px] md:h-[400px] border-2 border-accent"
                   referrerPolicy="no-referrer-when-downgrade"
                   src={`https://www.google.com.br/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEI}&q=Av.+Gen.+Osório,+184+-+Cango,+Francisco+Beltrão+-+PR,+85604-240`}
                   allowFullScreen></iframe>{' '}

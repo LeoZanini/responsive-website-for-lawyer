@@ -51,7 +51,7 @@ export default function IconButtons() {
         <LinkButtons key={index} link={item.link} toolTip={item.hover}>
           <item.icon
             className={`pr-3 py-2 mt-2 w-16 h-12 stroke-accent fill-accent border-y border-l border-accent ${
-              !hoveredIcons[index] ? 'animate-pulse' : ''
+              !hoveredIcons[index] ? 'md:animate-pulse' : ''
             } hover:-translate-x-1 transition-transform`}
             onMouseEnter={() => handleMouseEnter(index)}
           />
